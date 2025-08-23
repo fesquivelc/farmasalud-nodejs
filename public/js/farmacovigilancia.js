@@ -1,51 +1,43 @@
-/* Contact Form Dynamic */
+// Contact Form Dynamic (Vanilla JS - ES6+)
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('#contact-form');
+  const formMessages = document.querySelector('.form-messege');
+  const alertBox = document.querySelector('#alert');
 
-$(function() {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
 
-	// Get the form.
-	var form = $('#contact-form');
+    // Usar FormData para serializar los datos
+    const formData = new FormData(form);
 
-	// Get the messages div.
-	var formMessages = $('.form-messege');
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
 
-	// Set up an event listener for the contact form.
-	$(form).submit(function(e) {
-		// Stop the browser from submitting the form.
-		e.preventDefault();
+      const text = await response.text();
 
-		// Serialize the form data.
-		var formData = $(form).serialize();
+      // Resetear clases
+      formMessages.classList.remove('error', 'success');
 
-		// Submit the form using AJAX.
-		$.ajax({
-			type: 'POST',
-			url: $(form).attr('action'),
-			data: formData
-		})
-		.done(function(response) {
-			// Make sure that the formMessages div has the 'success' class.
-			$(formMessages).removeClass('error');
-			$(formMessages).addClass('success');
+      if (response.ok) {
+        formMessages.classList.add('success');
+        formMessages.textContent = text;
+        if (alertBox) alertBox.innerHTML = text;
 
-			// Set the message text.
-			$(formMessages).text(response);
-			$('#alert').html(response);
-
-			// Clear the form.
-			$('#contact-form input,#contact-form textarea').val('');
-		})
-		.fail(function(data) {
-			// Make sure that the formMessages div has the 'error' class.
-			$(formMessages).removeClass('success');
-			$(formMessages).addClass('error');
-
-			// Set the message text.
-			if (data.responseText !== '') {
-				$(formMessages).text(data.responseText);
-			} else {
-				$(formMessages).text('Oops! An error occured and your message could not be sent.');
-			}
-		});
-	});
-
+        // Limpiar formulario
+        form.querySelectorAll('input, textarea').forEach(el => (el.value = ''));
+      } else {
+        formMessages.classList.add('error');
+        formMessages.textContent =
+          text || 'Oops! An error occurred and your message could not be sent.';
+      }
+    } catch (err) {
+      formMessages.classList.remove('success');
+      formMessages.classList.add('error');
+      formMessages.textContent = 'Oops! Something went wrong. Please try again.';
+      console.error(err);
+    }
+  });
 });

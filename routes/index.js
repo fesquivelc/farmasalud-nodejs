@@ -1,27 +1,28 @@
-var express = require("express");
-var router = express.Router();
-var nodemailer = require("nodemailer");
-var emailConfig = require("../config/email");
+import { Router } from 'express';
+import { createTransport } from 'nodemailer';
+import { email as _email } from '../config/email.js';
+
+const router = Router();
 
 /* GET home page. */
-router.get(["/", "/farmacovigilancia"], function (req, res, next) {
-  res.render("farmacovigilancia", {
-    title: "Farmacovigilancia - Corporación FS",
-    alert: { show: false },
+router.get(['/', '/farmacovigilancia'], function (_req, res, _next) {
+  res.render('farmacovigilancia', {
+    title: 'Farmacovigilancia - Corporación FS',
+    alert: { show: false }
   });
 });
 
 /* POST send email. */
-router.post("/send-email", function (req, res, next) {
+router.post('/send-email', function (req, res, _next) {
   const { name, email, subject, phone, message } = req.body;
 
   // Create a transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport(emailConfig.email);
+  const transporter = createTransport(_email);
 
   // setup email data with unicode symbols
-  let mailOptions = {
+  const mailOptions = {
     from: '"Farmasalud - Farmacovigilancia" <sistemasfarma@farmasalud.com.pe>',
-    to: "sistemasfarma@farmasalud.com.pe", // list of receivers
+    to: 'sistemasfarma@farmasalud.com.pe', // list of receivers
     replyTo: email,
     subject: `Correo desde la web de Farmasalud - Farmacovigilancia: ${subject}`,
     html: `
@@ -43,28 +44,28 @@ router.post("/send-email", function (req, res, next) {
       </p>
       </body>
       </html>
-    `,
+    `
   };
 
   // send mail with defined transport object
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailOptions, (error, _info) => {
     const alert = { show: true };
     const data = {
-      title: "Farmacovigilancia - Corporación FS",
+      title: 'Farmacovigilancia - Corporación FS',
       alert
     };
     if (error) {
       data.alert.success = false;
       data.alert.errorMessage = `No se pudo enviar el mensaje: ${error.message}`;
-      console.log(error);
+      // console.log(error);
       // return res.status(500).send('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Alerta</strong> No se envio el mensaje, verifique e intente nuevamente.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
     } else {
-      console.log("Message sent: %s", info.messageId);
+      // console.log("Message sent: %s", info.messageId);
       data.sucess = true;
       data.alert.success = true;
     }
-    res.render("farmacovigilancia", data);
+    res.render('farmacovigilancia', data);
   });
 });
 
-module.exports = router;
+export default router;
