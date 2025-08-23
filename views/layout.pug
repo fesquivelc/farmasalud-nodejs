@@ -1,0 +1,149 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='shortcut icon', href='/images/favicon.png', type='image/x-icon')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css')
+    link(rel='stylesheet', href='/css/plugins.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/responsive.css')
+    style.
+      .float{
+      position:fixed;
+      width:60px;
+      height:60px;
+      bottom:130px;
+      right:40px;
+      background-color:#25d366;
+      color:#FFF;
+      border-radius:50px;
+      text-align:center;
+      font-size:30px;
+      box-shadow: 2px 2px 3px #999;
+      z-index:100;
+      right:25px;
+      }
+      .float:hover {
+      text-decoration: none;
+      color: #25d366;
+      background-color:#fff;
+      }
+      .my-float{
+      margin-top:16px;
+      }
+  body
+    .body-wrapper
+      header.ltn__header-area.ltn__header-3
+        .ltn__header-top-area.border-bottom
+          .container
+            .row
+              .col-md-9
+                .ltn__top-bar-menu
+                  ul
+                    li
+                      a(href='mailto:atencionclientes@farmasalud.com.pe?Subject=Flower%20greetings%20to%20you')
+                        i.icon-mail
+                        |  atencionclientes@farmasalud.com.pe
+                    li
+                      a(href='')
+                        i.icon-placeholder
+                        |  Av. Grau Nro. 1583 La Victoria - Chiclayo - Lambayeque
+                    li
+                      i.icon-call
+                      a(href='tel:51942436343')  942 436 343
+              .col-md-3
+                .top-bar-right.text-right.text-end
+                  .ltn__top-bar-menu
+                    ul
+                      li
+                        .ltn__social-media
+                          ul
+                            li
+                              a(href='#', title='Facebook')
+                                i.fab.fa-facebook-f
+                            li
+                              a(href='#', title='Twitter')
+                                i.fab.fa-twitter
+                            li
+                              a(href='#', title='Instagram')
+                                i.fab.fa-instagram
+                            li
+                              a(href='#', title='Dribbble')
+                                i.fab.fa-dribbble
+        .ltn__header-middle-area
+          .container
+            .row
+              .col
+                .site-logo
+                  a(href='./')
+                    img(src='/images/logo.png', alt='Logo')
+              .col.header-contact-serarch-column.d-none.d-lg-block
+                .header-contact-search
+                  .header-search-2
+                    form(id='#123', method='get', action='productos')
+                      input(type='text', name='search', id='search', placeholder='Buscar Productos')
+                      button(type='submit')
+                        span
+                          i.icon-search
+              .col
+                .ltn__header-options
+                  ul
+                    li.d-none---
+                      .ltn__drop-menu.user-menu
+                        ul
+                          li
+                            a(href='#')
+                              i.icon-user
+                              font(size='3')
+                            ul
+                              li
+                                a(href='account') Mis Datos
+                              li
+                                a(href='account') Mis Compras
+                              li
+                                a(href='cart') Carrito Compras
+                              li
+                                a(href='logout') Cerrar Sesi&oacute;n
+                    li
+                      .mini-cart-icon.mini-cart-icon-2
+                        a.ltn__utilize-toggle(href='#ltn__utilize-cart-menu')
+                          sup#divcarrito1
+        .header-bottom-area.ltn__border-top.ltn__header-sticky.ltn__sticky-bg-white---.ltn__sticky-bg-secondary.ltn__secondary-bg.section-bg-1.menu-color-white.d-none.d-lg-block
+          .container
+            .row
+              .col.header-menu-column.justify-content-center
+                .sticky-logo
+                  .site-logo
+                    a(href='./')
+                      img(src='/images/logo.png', alt='Logo')
+                .header-menu.header-menu-2
+                  nav
+                    .ltn__main-menu
+                      ul
+                        li
+                          a(href='./') Inicio
+                        li.menu-icon
+                          a(href='#')
+                            | Quienes Somos
+                          ul
+                            li
+                              a(href='#') Nosotros
+                        li
+                          a(href='#') Productos
+                        li
+                          a(href='farmacovigilancia') Farmacovigilancia
+                        li
+                          a(href='contacto')
+                            i.icon-call
+                            |  Cont&aacute;ctanos
+      block content
+      .preloader.d-none#preloader
+        .preloader-inner
+          .spinner
+            .dot1
+            .dot2
+    script(src='/js/plugins.js')
+    script(src='/js/main.js')

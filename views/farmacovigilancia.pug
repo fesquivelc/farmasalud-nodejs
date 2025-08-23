@@ -1,0 +1,87 @@
+extends layout.pug
+
+block content
+  .ltn__utilize-overlay
+  .ltn__breadcrumb-area.text-left.bg-overlay-white-30.bg-image(data-bs-bg='/images/bg/bg-page.jpg')
+    .container
+      .row
+        .col-lg-12
+          .ltn__breadcrumb-inner
+            h1.page-title Farmacovigilancia
+            .ltn__breadcrumb-list
+              ul
+                li
+                  a(href='./')
+                    span.ltn__secondary-color
+                      i.fas.fa-home
+                    |  Inicio
+                li Farmacovigilancia
+  .ltn__contact-address-area.mb-90
+    .container
+      .row
+        .col-lg-12
+          h3 Farmacovigilancia
+          p
+            | En Corporación FS. estamos comprometidos con la seguridad de los medicamentos por lo que es de mucha importancia la farmacovigilancia de los mismos. Si usted o su paciente cree que ha presentado una reacción adversa (efecto secundario) con uno de nuestros productos, agradeceríamos nos envié toda la información mediante el siguiente formulario.
+        .col-lg-6
+          .ltn__contact-address-item.ltn__contact-address-item-3.box-shadow
+            h3 ¿Qué debo reportar?
+            p
+              | Cualquier resultado adverso que pueda presentarse durante el uso de un producto farmacéutico, dispositivo medico o producto sanitario
+        .col-lg-6
+          .ltn__contact-address-item.ltn__contact-address-item-3.box-shadow
+            h3 ¿Por qué debo reportar?
+            p
+              | Para Corporación FS. es de sumo valor cualquier información que podamos recibir ya que de ese modo es posible vigilar el comportamiento de los medicamentos en la pr&aacute;ctica una vez hallan sido aprobados por las agencias regulatorias. Es una actividad muy valiosa para garantizar la seguridad de los pacientes y de los medicamentos.
+  .ltn__contact-message-area.mb-120.mb--100
+    .container
+      .row
+        .col-lg-12
+          .ltn__form-box.contact-form-box.box-shadow.white-bg
+            h4.title-2 Escribenos si tienes consultas.
+            form#contact-form(action='/send-email', method='post')
+              .row
+                .col-md-6
+                  .input-item.input-item-name.ltn__custom-icon
+                    input(type='text', name='name', placeholder='Nombres Completos')
+                .col-md-6
+                  .input-item.input-item-email.ltn__custom-icon
+                    input(type='email', name='email', placeholder='Correo electronico')
+                .col-md-6
+                  .input-item.input-item-subject.ltn__custom-icon
+                    input(type='text', name='subject', placeholder='Asunto')
+                .col-md-6
+                  .input-item.input-item-phone.ltn__custom-icon
+                    input(type='text', name='phone', placeholder='Numero Celular')
+              .input-item.input-item-textarea.ltn__custom-icon
+                textarea(name='message', placeholder='Escribe tu comentario')
+              .btn-wrapper.mt-0
+                button.btn.theme-btn-1.btn-effect-1.text-uppercase(type='submit') Enviar
+              if alert.show
+                if alert.success
+                  .alert.alert-success.alert-dismissible.fade.show(role='alert')
+                    strong Bien 
+                    | El mensaje fue enviado, pronto nos estaremos poniendo en contacto con usted.
+                    button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
+                else
+                  .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                    strong Alerta 
+                    | #{alert.errorMessage}
+                    button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
+              //- #alert.mb-0.mt-20
+  .mb-120
+  .ltn__call-to-action-area.call-to-action-6.before-bg-bottom(data-bs-bg='img/1.jpg--')
+    .container
+      .row
+        .col-lg-12
+          .call-to-action-inner.call-to-action-inner-6.ltn__secondary-bg.position-relative.text-center---
+            .coll-to-info.text-color-white
+              h1
+                | Con&oacute;cenos m&aacute;s sobre nosotros 
+                br
+                |  y todo sobre nuestros productos
+            .btn-wrapper
+              a.btn.btn-effect-3.btn-white(href='nosotros')
+                |  Nosotros 
+                i.icon-next
+  script(src='/js/farmacovigilancia.js')
