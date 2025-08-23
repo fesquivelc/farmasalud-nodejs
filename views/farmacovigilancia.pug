@@ -43,18 +43,18 @@ block content
               .row
                 .col-md-6
                   .input-item.input-item-name.ltn__custom-icon
-                    input(type='text', name='name', placeholder='Nombres Completos')
+                    input(type='text', name='name', placeholder='Nombres Completos', required='required')
                 .col-md-6
                   .input-item.input-item-email.ltn__custom-icon
-                    input(type='email', name='email', placeholder='Correo electronico')
+                    input(type='email', name='email', placeholder='Correo electronico', required='required')
                 .col-md-6
                   .input-item.input-item-subject.ltn__custom-icon
-                    input(type='text', name='subject', placeholder='Asunto')
+                    input(type='text', name='subject', placeholder='Asunto', required='required')
                 .col-md-6
                   .input-item.input-item-phone.ltn__custom-icon
-                    input(type='text', name='phone', placeholder='Numero Celular')
+                    input(type='text', name='phone', placeholder='Numero Celular', required='required')
               .input-item.input-item-textarea.ltn__custom-icon
-                textarea(name='message', placeholder='Escribe tu comentario')
+                textarea(name='message', placeholder='Escribe tu comentario', required='required')
               .btn-wrapper.mt-0
                 button.btn.theme-btn-1.btn-effect-1.text-uppercase(type='submit') Enviar
               if alert.show
@@ -84,4 +84,4 @@ block content
               a.btn.btn-effect-3.btn-white(href='nosotros')
                 |  Nosotros 
                 i.icon-next
-  script(src='/js/farmacovigilancia.js')
+  //- script(src='/js/farmacovigilancia.js')
