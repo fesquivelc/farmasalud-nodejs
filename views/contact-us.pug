@@ -1,0 +1,96 @@
+extends layout.pug 
+
+block content 
+  .ltn__utilize-overlay
+  .ltn__breadcrumb-area.text-left.bg-overlay-white-30.bg-image(data-bs-bg="/images/bg/bg-page.jpg")
+    .container
+      .row
+        .col-lg-12
+          .ltn__breadcrumb-inner
+            h1.page-title Contáctanos
+            .ltn__breadcrumb-list
+              ul
+                li
+                  a(href="./")
+                    span.ltn__secondary-color
+                        i.fas.fa-home
+                    |  Inicio
+                li Contáctanos
+  .ltn__contact-address-area.mb-90
+    .container
+      .row
+        .col-lg-4
+          .ltn__contact-address-item.ltn__contact-address-item-3.box-shadow
+            .ltn__contact-address-icon
+              img(src="/images/icons/10.png", alt="Icon Image")
+            h3 Correo Electrónico
+            p atencionclientes@farmasalud.com.pe
+      
+        .col-lg-4
+          .ltn__contact-address-item.ltn__contact-address-item-3.box-shadow
+            .ltn__contact-address-icon
+              img(src="/images/icons/11.png", alt="Icon Image")
+            h3 Número Celular
+            p 942 436 343
+      
+        .col-lg-4
+          .ltn__contact-address-item.ltn__contact-address-item-3.box-shadow
+            .ltn__contact-address-icon
+              img(src="/images/icons/12.png", alt="Icon Image")
+            h3 Ubícanos
+            p Av. Grau Nro. 1583 La Victoria (A una cuadra Hospital Privado Juan Pablo II) Lambayeque - Chiclayo - La Victoria
+
+  .ltn__contact-message-area.mb-120.mb--100
+    .container
+      .row
+        .col-lg-12
+          .ltn__form-box.contact-form-box.box-shadow.white-bg
+            h4.title-2 Escribenos para tus dudas y consultas.
+            form#contact-form(action="correo-contacto.php", method="post")
+              .row
+                .col-md-6
+                  .input-item.input-item-name.ltn__custom-icon
+                    input(type="text", name="name", placeholder="Nombres Completos")
+                .col-md-6
+                  .input-item.input-item-email.ltn__custom-icon
+                    input(type="email", name="email", placeholder="Correo electronico")
+                .col-md-6
+                  .input-item.input-item-subject.ltn__custom-icon
+                    input(type="text", name="subject", placeholder="Asunto")
+                .col-md-6
+                  .input-item.input-item-phone.ltn__custom-icon
+                    input(type="text", name="phone", placeholder="Numero Celular")
+                .input-item.input-item-textarea.ltn__custom-icon
+                  textarea(name="message", placeholder="Escribe tu comentario")
+              //- p
+              //-   label.input-info-save.mb-0
+              //-     input(type="checkbox", name="agree")
+              //-     |  Save my name, email, and website in this browser for the next time I comment.
+              .btn-wrapper.mt-0
+                button.btn.theme-btn-1.btn-effect-1.text-uppercase(type="submit") Enviar
+              //- p.form-messege.mb-0.mt-20
+              #alert.mb-0.mt-20
+      //- .row 
+      //-   .col-lg-12
+
+  //- Incluir Leaflet CSS y JS (agregar en el head del documento)
+  //- link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css")
+  //- script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js")
+  //- script(type="module", src="js/contact-map.js")
+
+  .openstreet-map.mt-5.mb-1
+    #map(style="height: 400px; width: 100%;")
+
+  .ltn__call-to-action-area.call-to-action-6.before-bg-bottom(data-bs-bg="img/1.jpg--")
+    .container
+      .row
+        .col-lg-12
+          .call-to-action-inner.call-to-action-inner-6.ltn__secondary-bg.position-relative.text-center---
+            .coll-to-info.text-color-white
+                h1 Conócenos más sobre nosotros 
+                br
+                | y todo sobre nuestros productos
+          //- .btn-wrapper
+          //-     a.btn.btn-effect-3.btn-white(href="productos") Ver Productos 
+          //-     i.icon-next
+  script(src="/js/contact-map.js", type="module") 

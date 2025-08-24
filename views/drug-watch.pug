@@ -39,7 +39,7 @@ block content
         .col-lg-12
           .ltn__form-box.contact-form-box.box-shadow.white-bg
             h4.title-2 Escribenos si tienes consultas.
-            form#contact-form(action='/send-email', method='post')
+            form#contact-form(method='post')
               .row
                 .col-md-6
                   .input-item.input-item-name.ltn__custom-icon
@@ -57,17 +57,26 @@ block content
                 textarea(name='message', placeholder='Escribe tu comentario', required='required')
               .btn-wrapper.mt-0
                 button.btn.theme-btn-1.btn-effect-1.text-uppercase(type='submit') Enviar
-              if alert.show
-                if alert.success
-                  .alert.alert-success.alert-dismissible.fade.show(role='alert')
-                    strong Bien 
-                    | El mensaje fue enviado, pronto nos estaremos poniendo en contacto con usted.
-                    button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
-                else
-                  .alert.alert-warning.alert-dismissible.fade.show(role='alert')
-                    strong Alerta 
-                    | #{alert.errorMessage}
-                    button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
+              #notification
+              //- // - #alert.alert.alert-success.alert-dismissible.fade.show(role='alert')
+              //- strong Bien 
+              //-   | El mensaje fue enviado, pronto nos estaremos poniendo en contacto con usted.
+              //-   button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
+              //- #alert.alert.alert-success.alert-dismissible.fade.show(role='alert')
+              //-   strong Bien 
+              //-   | El mensaje fue enviado, pronto nos estaremos poniendo en contacto con usted.
+              //-   button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
+              //- if alert.show
+              //-   if alert.success
+              //-     .alert.alert-success.alert-dismissible.fade.show(role='alert')
+              //-       strong Bien 
+              //-       | El mensaje fue enviado, pronto nos estaremos poniendo en contacto con usted.
+              //-       button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
+              //-   else
+              //-     .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+              //-       strong Alerta 
+              //-       | #{alert.errorMessage}
+              //-       button.btn-close(type='button', data-bs-dismiss='alert', aria-label='Close')
               //- #alert.mb-0.mt-20
   .mb-120
   .ltn__call-to-action-area.call-to-action-6.before-bg-bottom(data-bs-bg='img/1.jpg--')
@@ -84,4 +93,4 @@ block content
               a.btn.btn-effect-3.btn-white(href='nosotros')
                 |  Nosotros 
                 i.icon-next
-  //- script(src='/js/farmacovigilancia.js')
+  script(src='/js/drug-watch.js', type='module')

@@ -10,6 +10,8 @@ html
     link(rel='stylesheet', href='/css/plugins.css')
     link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/css/responsive.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js')
     style.
       .float{
       position:fixed;
@@ -134,9 +136,9 @@ html
                         li
                           a(href='#') Productos
                         li
-                          a(href='farmacovigilancia') Farmacovigilancia
+                          a(href='drug-watch') Farmacovigilancia
                         li
-                          a(href='contacto')
+                          a(href='contact-us')
                             i.icon-call
                             |  Cont&aacute;ctanos
       block content
