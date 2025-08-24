@@ -8,10 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const formData = new FormData(form);
+    const formObject = Object.fromEntries(formData.entries());
+    const jsonData = JSON.stringify(formObject);
     try {
       const response = await fetch(CONTACT_US_ENDPOINT, {
         method: 'POST',
-        body: formData
+        body: jsonData,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
 
       let type = 'warning';

@@ -1,5 +1,6 @@
 import { createTransport } from 'nodemailer';
-import { email as _email } from '../config/email.js';
+import { emailConfig } from '../config/email.js';
+import pug from 'pug';
 import logger from '../config/logger.js';
 
 export const contactUsUI = (_req, res, _next) => {
@@ -14,34 +15,24 @@ export const contactUsProcess = (req, res, _next) => {
   logger.info('Formulario de contacto recibido:', { name, email, subject, phone });
 
   // Create a transporter object using the default SMTP transport
-  const transporter = createTransport(_email);
+  const transporter = createTransport(emailConfig.smtp);
+
+  const html = pug.renderFile('views/email/email.pug', {
+    origin: 'Contáctanos',
+    name,
+    email,
+    subject,
+    message,
+    phone
+  });
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: '"Farmasalud - Farmacovigilancia" <sistemasfarma@farmasalud.com.pe>',
-    to: 'sistemasfarma@farmasalud.com.pe', // list of receivers
+    from: '"Farmasalud - Farmacovigilancia" <' + emailConfig.contactUs.from + '>',
+    to: emailConfig.contactUs.to, // list of receivers
     replyTo: email,
     subject: `Correo desde la web de Farmasalud - Farmacovigilancia: ${subject}`,
-    html: `
-          <html>
-          <head>
-             <title>Web de Farmasalud - Farmacovigilancia </title>
-          </head>
-          <body>
-          <h1>Este es un mensaje enviado desde la web de farmasalud - Contáctanos</h1>
-          <p>
-          <b>Informacion enviado desde nuestra plataforma web Farmasalud</b>. <br><br>
-          Farmacovigilancia. <br>
-          <b>Datos Recogidos</b><br>
-          <b>Nombres:</b> ${name} <br>
-          <b>Correo:</b> ${email} <br>
-          <b>Asunto:</b> ${subject} <br>
-          <b>Celular:</b> ${phone} <br>
-          <b>Mensaje:</b> ${message} <br>
-          </p>
-          </body>
-          </html>
-        `
+    html
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

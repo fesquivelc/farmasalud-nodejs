@@ -1,6 +1,7 @@
 export const showAlert = (content, elementId = 'alert', type = 'warning') => {
   const { title, message } = content;
   const alert = document.getElementById(elementId);
+  alert.innerHTML = '';
   alert.className = `alert alert-${type} alert-dismissible fade show`;
   alert.setAttribute('role', 'alert');
 
