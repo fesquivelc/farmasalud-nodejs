@@ -2,7 +2,7 @@ import { Router } from 'express';
 // import { createTransport } from 'nodemailer';
 // import { email as _email } from '../config/email.js';
 import { drugWatchUI, drugWatchProcess } from '../handlers/drug-watch.handler.js';
-import { contactUsUI } from '../handlers/contact-us.handler.js';
+import { contactUsUI, contactUsProcess } from '../handlers/contact-us.handler.js';
 
 const router = Router();
 
@@ -13,6 +13,7 @@ router.get('/contacto', contactUsUI);
 
 /* API routes */
 router.post('/api/v1/drug-watch', drugWatchProcess);
+router.post('/api/v1/contact-us', contactUsProcess);
 
 /* POST send email. */
 // router.post('/api/send-email', function (req, res, _next) {
