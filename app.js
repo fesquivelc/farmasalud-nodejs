@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import indexRouter from './routes/index.js';
+import logger from './config/logger.js';
 
 // __dirname no existe en ESM, lo reconstruimos
 const __filename = fileURLToPath(import.meta.url);
@@ -13,6 +14,11 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.url}`);
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,6 +27,7 @@ app.use('/', indexRouter);
 
 // error handler
 app.use(function (err, req, res, _next) {
+  logger.error(err.stack);
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

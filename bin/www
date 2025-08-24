@@ -6,9 +6,7 @@
 
 import app from '../app.js';
 import { createServer } from 'http';
-import createDebug from "debug";
-
-const debug = createDebug("farmacovigilanciajs:server");
+import logger from '../config/logger.js';
 
 const normalizePort = value => {
   const port = parseInt(value, 10);
@@ -24,7 +22,7 @@ const normalizePort = value => {
   }
 
   return null;
-}
+};
 
 /**
  * Get port from environment and store in Express.
@@ -48,41 +46,6 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 /**
- * Normalize a port into a number, string, or false.
- */
-
-// const normalizePort = value => {
-//   const port = parseInt(value, 10);
-
-//   if (isNaN(port)) {
-//     // named pipe
-//     return value;
-//   }
-
-//   if (port >= 0) {
-//     // port number
-//     return port;
-//   }
-
-//   return null;
-// }
-// function normalizePort(val) {
-//   var port = parseInt(val, 10);
-
-//   if (isNaN(port)) {
-//     // named pipe
-//     return val;
-//   }
-
-//   if (port >= 0) {
-//     // port number
-//     return port;
-//   }
-
-//   return false;
-// }
-
-/**
  * Event listener for HTTP server 'error' event.
  */
 
@@ -91,18 +54,16 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -116,8 +77,6 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  logger.info('Listening on ' + bind);
 }

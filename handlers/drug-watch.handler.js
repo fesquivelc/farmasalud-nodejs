@@ -1,5 +1,6 @@
 import { createTransport } from 'nodemailer';
 import { email as _email } from '../config/email.js';
+import logger from '../config/logger.js';
 
 export const drugWatchUI = (_req, res, _next) => {
   res.render('drug-watch', {
@@ -8,7 +9,9 @@ export const drugWatchUI = (_req, res, _next) => {
 };
 
 export const drugWatchProcess = (req, res, _next) => {
+  logger.info('Procesando formulario de farmacovigilancia');
   const { name, email, subject, phone, message } = req.body;
+  logger.info('Datos de farmacovigilancia recibidos:', { name, email, subject, phone });
 
   // Create a transporter object using the default SMTP transport
   const transporter = createTransport(_email);
@@ -44,10 +47,12 @@ export const drugWatchProcess = (req, res, _next) => {
   transporter.sendMail(mailOptions, (error, _info) => {
     const response = {};
     if (error) {
+      logger.error('Error al enviar correo de farmacovigilancia:', error);
       response.ok = false;
       response.message = `No se pudo enviar el mensaje: ${error.message}`;
       res.status(500).json(response);
     } else {
+      logger.info('Correo de farmacovigilancia enviado correctamente');
       response.ok = true;
       response.message = `Mensaje enviado correctamente`;
       res.json(response);
