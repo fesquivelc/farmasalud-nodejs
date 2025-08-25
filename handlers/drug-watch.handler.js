@@ -10,9 +10,11 @@ export const drugWatchUI = (_req, res, _next) => {
 };
 
 export const drugWatchProcess = (req, res, _next) => {
-  logger.info('Procesando formulario de farmacovigilancia');
+  logger.debug('Procesando formulario de farmacovigilancia');
   const { name, email, subject, phone, message } = req.body;
-  logger.info(`Datos de farmacovigilancia recibidos: (${name}, ${email}, ${subject}, ${phone})`);
+  logger.info(
+    `Datos de farmacovigilancia recibidos: name=(${name}), email=(${email}), subject=(${subject}), phone=(${phone})`
+  );
 
   // Create a transporter object using the default SMTP transport
   const transporter = createTransport(emailConfig.smtp);

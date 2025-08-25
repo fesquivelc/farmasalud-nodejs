@@ -10,9 +10,11 @@ export const contactUsUI = (_req, res, _next) => {
 };
 
 export const contactUsProcess = (req, res, _next) => {
-  logger.info('Procesando formulario de contacto');
+  logger.debug('Procesando formulario de contacto');
   const { name, email, subject, phone, message } = req.body;
-  logger.info('Formulario de contacto recibido:', { name, email, subject, phone });
+  logger.info(
+    `Formulario de contacto recibido: name=(${name}), email=(${email}), subject=(${subject}), phone=(${phone})`
+  );
 
   // Create a transporter object using the default SMTP transport
   const transporter = createTransport(emailConfig.smtp);

@@ -1,3 +1,25 @@
 node_modules/
 .husky/
 .env
+
+# Logs
+logs
+*.log
+
+# Git
+.git
+.gitignore
+
+# Config y herramientas de dev
+.dockerignore
+docker-compose.yml
+.prettierignore
+.prettierrc
+eslint.config.js
+
+# SO / temporales
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*.pid
