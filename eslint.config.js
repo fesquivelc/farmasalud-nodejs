@@ -9,8 +9,8 @@ export default [
   {
     ignores: [
       'node_modules/**',
-      'public/javascripts/*.min.js',
-      'public/js/*.*',
+      'src/public/javascripts/*.min.js',
+      'src/public/js/*.*',
       'coverage/**',
       'dist/**'
     ]

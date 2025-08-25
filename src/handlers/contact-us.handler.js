@@ -19,7 +19,7 @@ export const contactUsProcess = (req, res, _next) => {
   // Create a transporter object using the default SMTP transport
   const transporter = createTransport(emailConfig.smtp);
 
-  const html = pug.renderFile('views/email/email.pug', {
+  const html = pug.renderFile('src/views/email/email.pug', {
     origin: 'Contáctanos',
     name,
     email,

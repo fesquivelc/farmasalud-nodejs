@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 
-import app from '../app.js';
+import app from '../src/app.js';
 import { createServer } from 'http';
-import logger from '../config/logger.js';
+import logger from '../src/config/logger.js';
 
 const normalizePort = value => {
   const port = parseInt(value, 10);

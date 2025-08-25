@@ -19,7 +19,7 @@ export const drugWatchProcess = (req, res, _next) => {
   // Create a transporter object using the default SMTP transport
   const transporter = createTransport(emailConfig.smtp);
 
-  const html = pug.renderFile('views/email/email.pug', {
+  const html = pug.renderFile('src/views/email/email.pug', {
     origin: 'Farmacovigilancia',
     name,
     email,
